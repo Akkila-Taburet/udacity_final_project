@@ -26,7 +26,8 @@ default_args = {
     default_args=default_args,
     description='Load and transform data in Redshift with Airflow',
     schedule_interval='@hourly',
-    'catchup':False
+    catchup=False
+
 )
 def final_project():
 

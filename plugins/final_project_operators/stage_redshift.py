@@ -46,7 +46,7 @@ class StageToRedshiftOperator(BaseOperator):
         redshift = PostgresHook(postgres_conn_id=self.redshift_conn_id)
 
 
-        self.log.info("Copy data from s3 to redshift")
+        
         key = self.s3_key.format(**context)
         s3_path = "s3://{}/{}".format(self.s3_bucket, key)
 
@@ -60,6 +60,8 @@ class StageToRedshiftOperator(BaseOperator):
         if self.skip.lower() == "false":
             self.log.info("Deleting data from {self.table}")
             redshift.run("DELETE FROM {}".format(self.table))
+
+            self.log.info("Copy data from s3 to {self.table}")
             redshift.run(copy_sql)
         else:
             self.log.info(f"Skipping staging to Redshift for table {self.table}")

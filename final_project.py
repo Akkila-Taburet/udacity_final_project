@@ -15,6 +15,7 @@ default_args = {
     'owner': 'Akkila',
     'start_date': pendulum.now(),
     'depends_on_past': False,
+    'retries': 3,
     'retry_delay': timedelta(minutes=5),
     'email_on_retry': False,
     'max_active_runs': 3,

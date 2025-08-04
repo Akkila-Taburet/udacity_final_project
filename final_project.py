@@ -18,15 +18,15 @@ default_args = {
     'retries': 3,
     'retry_delay': timedelta(minutes=5),
     'email_on_retry': False,
-    'max_active_runs': 3,
-    'catchup':False
+    'max_active_runs': 3
 
 }
 
 @dag(
     default_args=default_args,
     description='Load and transform data in Redshift with Airflow',
-    schedule_interval='@hourly'
+    schedule_interval='@hourly',
+    'catchup':False
 )
 def final_project():
 
